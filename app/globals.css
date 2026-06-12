@@ -1,26 +1,128 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #030712;
+  --foreground: #ffffff;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  direction: rtl;
+}
+
+* {
+  box-sizing: border-box;
+}@keyframes floatMain {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-14px);
+  }
+}
+
+@keyframes floatSlow {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-12deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(-12deg);
+  }
+}
+
+@keyframes floatSlowReverse {
+  0%,
+  100% {
+    transform: translateY(0) rotate(12deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(12deg);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseSoft {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(96, 165, 250, 0.35);
+  }
+  50% {
+    opacity: 0.65;
+    box-shadow: 0 0 0 8px rgba(96, 165, 250, 0);
+  }
+}
+
+.animate-float-main {
+  animation: floatMain 5.5s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: floatSlow 6.5s ease-in-out infinite;
+}
+
+.animate-float-slow-reverse {
+  animation: floatSlowReverse 7s ease-in-out infinite;
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.8s ease-out both;
+}
+
+.animate-pulse-soft {
+  animation: pulseSoft 2s ease-in-out infinite;
+}
+
+.shine-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(120%);
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.08),
+    transparent
+  );
+  transition: transform 0.8s ease;
+}
+
+.shine-card:hover::before {
+  transform: translateX(-120%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-main,
+  .animate-float-slow,
+  .animate-float-slow-reverse,
+  .animate-fade-up,
+  .animate-pulse-soft {
+    animation: none;
+  }
+
+  .shine-card::before {
+    display: none;
+  }
 }
