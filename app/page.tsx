@@ -216,59 +216,95 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-16 sm:py-20">
-          <div className="grid gap-8 overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] p-5 shadow-2xl shadow-black/20 backdrop-blur-xl sm:rounded-[2.5rem] sm:p-8 lg:grid-cols-2 lg:p-12">
-            <div className="flex flex-col justify-center text-center lg:text-right">
-              <p className="text-sm font-bold text-blue-300">استيراد Excel</p>
+<section className="py-16 sm:py-20">
+  <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] shadow-2xl shadow-black/20 backdrop-blur-xl sm:rounded-[2.5rem]">
+    <div className="grid gap-0 lg:grid-cols-2">
+      <div className="flex flex-col justify-center p-6 text-center sm:p-8 lg:p-12 lg:text-right">
+        <div className="mx-auto mb-4 w-fit rounded-full border border-blue-400/20 bg-blue-500/10 px-4 py-2 text-sm font-black text-blue-200 lg:mx-0">
+          استيراد Excel
+        </div>
 
-              <h2 className="mt-4 text-4xl font-black leading-tight sm:text-5xl md:text-6xl">
-                لا تبدأ
-                <br />
-                من الصفر
-              </h2>
+        <h2 className="text-4xl font-black leading-tight sm:text-5xl md:text-6xl">
+          لا تبدأ
+          <br />
+          من الصفر
+        </h2>
 
-              <p className="mx-auto mt-6 max-w-xl text-base leading-8 text-slate-300 sm:text-lg lg:mx-0">
-                إذا كانت بياناتك في ملف Excel، يمكنك استيراد الوحدات والعقود
-                دفعة واحدة والبدء بسرعة بدون إدخال يدوي طويل.
-              </p>
+        <p className="mx-auto mt-5 max-w-xl text-base leading-8 text-slate-300 sm:text-lg lg:mx-0">
+          استورد الوحدات والعقود من ملف Excel وابدأ بسرعة بدل الإدخال اليدوي الطويل.
+        </p>
 
-              <div className="mt-8 grid gap-3 sm:grid-cols-2">
-                <MiniPoint text="استيراد الوحدات" />
-                <MiniPoint text="استيراد العقود" />
-                <MiniPoint text="مراجعة قبل الحفظ" />
-                <MiniPoint text="مناسب للعقود الكثيرة" />
-              </div>
+        <div className="mt-7 grid gap-3 sm:grid-cols-2">
+          <MiniPoint text="استيراد الوحدات" />
+          <MiniPoint text="استيراد العقود" />
+          <MiniPoint text="مراجعة قبل الحفظ" />
+          <MiniPoint text="مناسب للعقود الكثيرة" />
+        </div>
+      </div>
+
+      <div className="relative bg-slate-950/70 p-5 sm:p-8 lg:p-10">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(37,99,235,0.20),transparent_34%)]" />
+
+        <div className="relative rounded-[1.75rem] border border-white/10 bg-[#020617]/80 p-4 shadow-2xl shadow-black/30 sm:rounded-[2rem] sm:p-5">
+          <div className="mb-5 flex items-center justify-between gap-3">
+            <div className="text-right">
+              <p className="text-sm font-black text-white">ملف Excel</p>
+              <p className="mt-1 text-xs text-slate-400">معاينة قبل الاستيراد</p>
             </div>
 
-            <div className="relative min-h-[330px] rounded-[1.75rem] border border-white/10 bg-slate-950/70 p-4 shadow-2xl shadow-black/20 sm:min-h-[360px] sm:rounded-[2rem] sm:p-6">
-              <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <p className="font-bold">ملف Excel</p>
-                <span className="w-fit rounded-full bg-green-500/15 px-4 py-2 text-sm font-bold text-green-300">
-                  جاهز للاستيراد
-                </span>
-              </div>
+            <span className="shrink-0 rounded-full bg-green-500/15 px-3 py-2 text-xs font-black text-green-300 sm:px-4 sm:text-sm">
+              جاهز
+            </span>
+          </div>
 
-              <div className="overflow-x-auto pb-2">
-                <div className="min-w-[520px] space-y-3">
-                  <ExcelRow
-                    cols={["الوحدة", "المستأجر", "العقد", "الإيجار"]}
-                    header
-                  />
-                  <ExcelRow cols={["A-101", "محمد سالم", "سنوي", "24,000"]} />
-                  <ExcelRow
-                    cols={["A-102", "عبدالعزيز", "شهري", "18,000"]}
-                  />
-                  <ExcelRow cols={["B-201", "خالد", "ربع سنوي", "30,000"]} />
-                  <ExcelRow cols={["B-202", "شاغرة", "—", "—"]} />
-                </div>
-              </div>
+          <div className="space-y-3 md:hidden">
+            <ExcelMobileCard
+              unit="A-101"
+              tenant="محمد سالم"
+              contract="سنوي"
+              rent="24,000"
+            />
+            <ExcelMobileCard
+              unit="A-102"
+              tenant="عبدالعزيز"
+              contract="شهري"
+              rent="18,000"
+            />
+            <ExcelMobileCard
+              unit="B-201"
+              tenant="خالد"
+              contract="ربع سنوي"
+              rent="30,000"
+            />
+          </div>
 
-              <div className="mt-6 rounded-2xl bg-blue-600 px-5 py-4 text-center font-black shadow-lg shadow-blue-600/20 transition hover:bg-blue-500">
-                استيراد البيانات
-              </div>
+          <div className="hidden md:block">
+            <div className="space-y-3">
+              <ExcelRow
+                cols={["الوحدة", "المستأجر", "العقد", "الإيجار"]}
+                header
+              />
+              <ExcelRow cols={["A-101", "محمد سالم", "سنوي", "24,000"]} />
+              <ExcelRow cols={["A-102", "عبدالعزيز", "شهري", "18,000"]} />
+              <ExcelRow cols={["B-201", "خالد", "ربع سنوي", "30,000"]} />
+              <ExcelRow cols={["B-202", "شاغرة", "- ", "-"]} />
             </div>
           </div>
-        </section>
+
+          <div className="mt-5 overflow-hidden rounded-2xl border border-blue-400/20 bg-blue-600/15">
+            <div className="h-1.5 w-3/4 rounded-full bg-blue-400" />
+            <div className="flex items-center justify-between gap-3 px-4 py-4">
+              <span className="text-sm font-bold text-blue-100">
+                جاري تجهيز البيانات
+              </span>
+              <span className="text-sm font-black text-white">75%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
         <section id="screenshots" className="py-14 sm:py-16">
           <div className="mb-10 text-center sm:mb-12">
@@ -441,6 +477,45 @@ function MiniPoint({ text }: { text: string }) {
   return (
     <div className="rounded-2xl border border-white/10 bg-white/[0.05] px-4 py-3 text-sm font-bold transition hover:bg-white/[0.08]">
       ✓ {text}
+    </div>
+  );
+}
+function ExcelMobileCard({
+  unit,
+  tenant,
+  contract,
+  rent,
+}: {
+  unit: string;
+  tenant: string;
+  contract: string;
+  rent: string;
+}) {
+  return (
+    <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+      <div className="mb-3 flex items-center justify-between gap-3">
+        <span className="text-xs font-bold text-slate-400">الوحدة</span>
+        <span className="rounded-full bg-blue-500/15 px-3 py-1 text-sm font-black text-blue-200">
+          {unit}
+        </span>
+      </div>
+
+      <div className="space-y-2 text-sm">
+        <div className="flex items-center justify-between gap-3">
+          <span className="text-slate-400">المستأجر</span>
+          <span className="font-bold text-white">{tenant}</span>
+        </div>
+
+        <div className="flex items-center justify-between gap-3">
+          <span className="text-slate-400">العقد</span>
+          <span className="font-bold text-white">{contract}</span>
+        </div>
+
+        <div className="flex items-center justify-between gap-3">
+          <span className="text-slate-400">الإيجار</span>
+          <span className="font-black text-white">{rent}</span>
+        </div>
+      </div>
     </div>
   );
 }
